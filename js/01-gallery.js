@@ -33,6 +33,32 @@ function onGallaryConteinerClick(e) {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  console.log(e.target.dataset.source);
-  //   const nextActivPicture = e.target;
+
+  // console.log(e.target.dataset.source);
+  const nextActivPicture = e.target.dataset.source;
+  onOpenModal(nextActivPicture);
 }
+
+function onOpenModal(nextActivPicture) {
+  // window.addEventListener("keydown", onEscKeyPress);
+
+  const instance = basicLightbox.create(`
+    <div class="modal">
+        <img src=${nextActivPicture} width="1120" height="100%">
+    </div>
+`);
+
+  instance.show();
+}
+
+// function onEscKeyPress(e) {
+//   console.log(e.code);
+//   if (e.code === "Escape") {
+//     onCloseModal();
+//   }
+// }
+
+// function onCloseModal() {
+//   window.removeEventListener("keydown", onEscKeyPress);
+//   // instance.close();
+// }
