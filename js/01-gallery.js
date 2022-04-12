@@ -3,7 +3,7 @@ import { galleryItems } from "./gallery-items.js";
 const galleryEl = document.querySelector(".gallery");
 const makeTransactionRole = makeGalleryPicture(galleryItems);
 
-galleryEl.insertAdjacentHTML("afterbegin", makeTransactionRole);
+galleryEl.innerHTML = makeTransactionRole;
 // console.log(galleryItems);
 
 galleryEl.addEventListener("click", onGallaryConteinerClick);
