@@ -5,29 +5,21 @@ const makeTransactionRole = makeGalleryPicture(galleryItems);
 
 galleryEl.innerHTML = makeTransactionRole;
 
-galleryEl.addEventListener("click", onGallaryConteinerClick);
-
 function makeGalleryPicture(gallery) {
   return gallery
     .map(({ preview, original, description }) => {
       return `
+      <li>
     <a class="gallery__item" href=${original}>
   <img class="gallery__image" src= ${preview} alt="${description}" />
     </a>
+    </li>
     `;
     })
     .join("");
 }
 
-function onGallaryConteinerClick(e) {
-  e.preventDefault();
-
-  if (!e.target.classList.contains("gallery__image")) {
-    return;
-  }
-
-  new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    animationSpeed: 250,
-  });
-}
+new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  animationSpeed: 250,
+});
