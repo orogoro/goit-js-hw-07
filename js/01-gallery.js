@@ -4,7 +4,6 @@ const galleryEl = document.querySelector(".gallery");
 const makeTransactionRole = makeGalleryPicture(galleryItems);
 
 galleryEl.innerHTML = makeTransactionRole;
-// console.log(galleryItems);
 
 galleryEl.addEventListener("click", onGallaryConteinerClick);
 
@@ -34,7 +33,6 @@ function onGallaryConteinerClick(e) {
     return;
   }
 
-  // console.log(e.target.dataset.source);
   const nextActivPicture = e.target.dataset.source;
   onOpenModal(nextActivPicture);
 }
@@ -42,23 +40,34 @@ function onGallaryConteinerClick(e) {
 function onOpenModal(nextActivPicture) {
   // window.addEventListener("keydown", onEscKeyPress);
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <div class="modal">
         <img src=${nextActivPicture} width="1120" height="100%">
     </div>
-`);
-
+`
+  );
   instance.show();
+
+  document.addEventListener("keydown", function (e) {
+    // console.log(e.code);
+    if (e.code === "Enter") {
+      document.removeEventListener("keydown", this);
+      instance.close();
+    }
+  });
+
+  // instance.show();
 }
 
 // function onEscKeyPress(e) {
 //   console.log(e.code);
-//   if (e.code === "Escape") {
-//     onCloseModal();
-//   }
+//   // if (e.code === "Escape") {
+//   //   onCloseModal();
+//   // }
 // }
 
 // function onCloseModal() {
-//   window.removeEventListener("keydown", onEscKeyPress);
-//   // instance.close();
+//   // window.removeEventListener("keydown", onEscKeyPress);
+//   instance.close(() => window.removeEventListener("keydown", onEscKeyPress));
 // }
